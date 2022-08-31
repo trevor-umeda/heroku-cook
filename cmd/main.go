@@ -28,5 +28,5 @@ func main() {
 	recipes.RegisterRoutes(r, h)
 	tags.RegisterRoutes(r, h)
 
-	r.Run(port)
+	r.Run(":" + port)
 }
