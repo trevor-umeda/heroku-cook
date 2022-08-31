@@ -1,0 +1,12 @@
+curl --request POST \
+  --url http://localhost:3000/recipes/ \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "title": "Tortilla Jianbing Wraps",
+    "link": "https://thewoksoflife.com/tortilla-jianbing-wraps/",
+    "description": "Tortilla Wraps",
+    "tags": "chinese,lunch"
+  }'
+
+
+  $ curl --request DELETE --url http://localhost:3000/recipes/1/
