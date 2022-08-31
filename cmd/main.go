@@ -6,13 +6,17 @@ import (
 	"github.com/trevor-umeda/heroku-cook/pkg/common/db"
 	"github.com/trevor-umeda/heroku-cook/pkg/recipes"
 	"github.com/trevor-umeda/heroku-cook/pkg/tags"
+	"os"
 )
 
 func main() {
 	viper.SetConfigFile("./pkg/common/envs/.env")
 	viper.ReadInConfig()
 
-	port := viper.Get("PORT").(string)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = viper.Get("PORT").(string)
+	}
 	dbUrl := viper.Get("DATABASE_URL").(string)
 
 	r := gin.Default()
