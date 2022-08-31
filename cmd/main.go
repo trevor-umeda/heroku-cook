@@ -17,7 +17,10 @@ func main() {
 	if port == "" {
 		port = viper.Get("PORT").(string)
 	}
-	dbUrl := viper.Get("DATABASE_URL").(string)
+	dbUrl := os.Getenv("DATABASE_URL")
+	if dbUrl == "" {
+		dbUrl = viper.Get("DATABASE_URL").(string)
+	}
 
 	r := gin.Default()
 	h := db.Init(dbUrl)
