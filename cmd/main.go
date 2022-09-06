@@ -6,6 +6,7 @@ import (
 	"github.com/trevor-umeda/heroku-cook/pkg/common/db"
 	"github.com/trevor-umeda/heroku-cook/pkg/recipes"
 	"github.com/trevor-umeda/heroku-cook/pkg/tags"
+	"net/http"
 	"os"
 )
 
@@ -27,6 +28,11 @@ func main() {
 
 	recipes.RegisterRoutes(r, h)
 	tags.RegisterRoutes(r, h)
+	r.LoadHTMLFiles("static/index.html")
+	r.Static("/assets", "static/assets")
 
+	r.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", nil)
+	})
 	r.Run(":" + port)
 }

@@ -9,4 +9,14 @@ curl --request POST \
   }'
 
 
+curl --request POST \
+  --url https://immense-fjord-17253.herokuapp.com/recipes/ \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "title": "Tortilla Jianbing Wraps",
+    "link": "https://thewoksoflife.com/tortilla-jianbing-wraps/",
+    "description": "Tortilla Wraps",
+    "tags": "chinese,lunch"
+  }'
+https://immense-fjord-17253.herokuapp.com/
   $ curl --request DELETE --url http://localhost:3000/recipes/1/
