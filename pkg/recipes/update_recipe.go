@@ -11,6 +11,7 @@ type UpdateRecipeRequestBody struct {
 	Link        string `json:"link"`
 	Description string `json:"description"`
 	Tags        string `json:"tags"`
+	Rating      int    `json:"rating"`
 }
 
 func (h handler) UpdateRecipe(c *gin.Context) {
@@ -35,6 +36,7 @@ func (h handler) UpdateRecipe(c *gin.Context) {
 	recipe.Link = body.Link
 	recipe.Description = body.Description
 	recipe.Tags = body.Tags
+	recipe.Rating = body.Rating
 
 	h.DB.Save(&recipe)
 

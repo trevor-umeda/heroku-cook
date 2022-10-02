@@ -14,6 +14,7 @@ type AddRecipeRequestBody struct {
 	Link        string `json:"link"`
 	Description string `json:"description"`
 	Tags        string `json:"tags"`
+	Rating      int    `json:"rating"`
 }
 
 func (h handler) AddRecipe(c *gin.Context) {
@@ -31,7 +32,7 @@ func (h handler) AddRecipe(c *gin.Context) {
 	recipe.Link = body.Link
 	recipe.Description = body.Description
 	recipe.Tags = body.Tags
-
+	recipe.Rating = body.Rating
 	if result := h.DB.Create(&recipe); result.Error != nil {
 		c.AbortWithError(http.StatusNotFound, result.Error)
 		return

@@ -14,7 +14,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		DB: db,
 	}
 
-	routes := r.Group("/recipes")
+	routes := r.Group("/api/recipes")
 	routes.POST("/", h.AddRecipe)
 	routes.GET("/", h.getRecipes)
 	routes.GET("/:id", h.getRecipe)

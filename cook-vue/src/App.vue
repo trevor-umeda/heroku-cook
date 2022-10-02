@@ -1,31 +1,50 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+import Landing from "./components/Landing.vue";
+import AddRecipe from "@/components/AddRecipe.vue";
 </script>
 
 <template>
   <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
+      <Landing msg="Cooking App" />
+      <AddRecipe />
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/list">Recipes</RouterLink>
       </nav>
     </div>
   </header>
 
   <RouterView />
 </template>
+<script lang="ts">
+import axios from "axios";
+import { defineComponent } from "vue";
 
+export default defineComponent({
+  name: "App",
+  data() {
+    return {
+      recipeName: "",
+      recipeLink: "",
+      recipeTags: "",
+      recipeRating: 0
+    };
+  },
+  methods: {
+    async addRecipe() {
+      console.log("Nice");
+      const res = await axios.post(`/api/recipes`, {
+        title: this.recipeName,
+        link: this.recipeLink,
+        tags: this.recipeTags,
+        rating: this.recipeRating,
+      });
+    },
+  },
+});
+</script>
 <style scoped>
 header {
   line-height: 1.5;
@@ -62,6 +81,11 @@ nav a:first-of-type {
   border: 0;
 }
 
+.recipeInput {
+  display:block;
+
+}
+
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -74,7 +98,6 @@ nav a:first-of-type {
   }
 
   header .wrapper {
-    display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
   }

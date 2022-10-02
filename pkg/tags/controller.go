@@ -14,7 +14,7 @@ func RegisterRoutes(r *gin.Engine, db *gorm.DB) {
 		DB: db,
 	}
 
-	routes := r.Group("/tags")
+	routes := r.Group("/api/tags")
 	routes.GET("/:tag", h.getByTags)
 
 }
