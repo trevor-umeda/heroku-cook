@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TheWelcome from "../components/TheWelcome.vue";
+import WeekPlan from "@/components/WeekPlan.vue";
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <WeekPlan />
   </main>
 </template>
